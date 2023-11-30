@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_screen_bg"
+    tools:context=".ui.Splash">
+
+    <ImageView
+        android:id="@+id/id_material_ImageView"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="70dp"
+        android:layout_marginEnd="70dp"
+        android:src="@drawable/khalid_text" />
+
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/id_material_ImageView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:max="100" />
+
+    <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/margin_40"
+        android:gravity="center"
+        android:text="@string/designed"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+
+</RelativeLayout>

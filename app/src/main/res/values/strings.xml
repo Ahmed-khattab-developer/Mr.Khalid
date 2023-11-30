@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">Mr.Khalid</string>
+
+    <string name="designed">Developed by \n Ahmed Khattab</string>
+
+    <string name="sign_in">Sign In</string>
+
+    <string name="sign_up">Sign Up</string>
+
+    <string name="forgot_password">Forgot ?</string>
+
+    <string name="aboutyou">About You</string>
+
+    <string name="phone">Phone</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+
+    <string name="validPhone">أدخل رقم هاتف صحيح</string>
+    <string name="validpassword">أدخل رقم سري اكبر من 6 أحرف</string>
+    <string name="enteryourname">أدخل أسمك بالكامل</string>
+    <string name="validemail">أدخل إيميل صحيح</string>
+    <string name="uploadphoto">Upload your picture</string>
+    <string name="pickYourDate">Pick your date of birth</string>
+    <string name="iam">I\'m</string>
+    <string name="validusername">أدخل الاسم بالكامل</string>
+
+    <string name="full_name">Name</string>
+
+    <string name="text_success">Success</string>
+
+    <string name="text_error">Error</string>
+
+    <string name="text_no_internet">هناك مشكلة في اتصالك بالانترنت</string>
+
+
+    <string name="connected_to_internet">تأكد أن هاتفك متصلا بالانترنت</string>
+    <string name="grade">Grade</string>
+
+</resources>

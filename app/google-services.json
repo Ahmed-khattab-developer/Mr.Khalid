@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "515809887765",
+    "project_id": "mr-khalid",
+    "storage_bucket": "mr-khalid.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515809887765:android:042a696a409704825c701c",
+        "android_client_info": {
+          "package_name": "com.elgaban.mrkhalid"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD2_wmmFF9EY-V4YmiZISN5Kd6IUy4XW_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
