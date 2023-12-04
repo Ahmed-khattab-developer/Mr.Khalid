@@ -5,7 +5,7 @@ class AppConstant {
 
     object Constants {
 
-        const val BASE_URL = "http://rx-eg.com/api/v1/"
+        const val STUDENT = "student"
 
     }
 }

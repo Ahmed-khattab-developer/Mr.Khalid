@@ -10,21 +10,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:background="@drawable/backgroud"
+        android:background="@drawable/background"
         android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/id_SignUp_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/cairo_regular"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginTop="100dp"
                 android:text="@string/sign_up"
                 android:textColor="@color/signupsignintextcolor"
                 android:textSize="@dimen/textsize_30"
@@ -44,7 +45,41 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_Email_textInputLayout"
+                    android:id="@+id/name_textInputLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="75dp"
+                    android:layout_marginStart="@dimen/marign_23"
+                    android:layout_marginTop="@dimen/marign_23"
+                    android:layout_marginEnd="@dimen/marign_23"
+                    android:background="@null">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/userName_EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:hint="@string/full_name"
+                        android:paddingStart="10dp"
+                        android:fontFamily="@font/cairo_regular"
+                        android:paddingEnd="10dp"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/textsize_14" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:id="@+id/id_view_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="@dimen/marign_23"
+                    android:layout_marginTop="@dimen/marign_2"
+                    android:layout_marginEnd="26dp"
+                    android:layout_marginRight="@dimen/marign_23"
+                    android:background="@color/linecolor" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/email_textInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:layout_marginLeft="@dimen/marign_23"
@@ -52,14 +87,15 @@
                     android:layout_marginRight="@dimen/marign_23"
                     android:background="@null">
 
-                    <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoEditText
-                        android:id="@+id/id_Email_EditText"
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/email_EditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
                         android:hint="@string/email"
                         android:inputType="textEmailAddress"
                         android:paddingStart="10dp"
+                        android:fontFamily="@font/cairo_regular"
                         android:paddingEnd="10dp"
                         android:textColor="@color/primarytext"
                         android:textColorHint="@color/gray"
@@ -77,7 +113,7 @@
                     android:background="@color/linecolor" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_Password_textInputLayout"
+                    android:id="@+id/password_textInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="75dp"
                     android:layout_marginLeft="@dimen/marign_23"
@@ -85,8 +121,8 @@
                     android:layout_marginRight="@dimen/marign_23"
                     android:background="@null">
 
-                    <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoEditText
-                        android:id="@+id/id_password_EditText"
+                    <com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
+                        android:id="@+id/password_EditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
@@ -94,6 +130,7 @@
                         android:inputType="numberPassword"
                         android:paddingStart="10dp"
                         android:paddingEnd="10dp"
+                        android:fontFamily="@font/cairo_regular"
                         android:textColor="@color/primarytext"
                         android:textColorHint="@color/gray"
                         android:textSize="@dimen/textsize_14" />
@@ -109,7 +146,7 @@
                     android:layout_marginRight="@dimen/marign_23"
                     android:background="@color/linecolor" />
 
-                <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoButton
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/id_signUp_Button"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/height_50"
@@ -117,6 +154,7 @@
                     android:layout_marginTop="@dimen/marign_46"
                     android:layout_marginRight="@dimen/marign_32"
                     android:layout_marginBottom="@dimen/marign_46"
+                    android:fontFamily="@font/cairo_regular"
                     android:background="@drawable/rectsignin"
                     android:text="@string/sign_up"
                     android:textAllCaps="false"
@@ -126,7 +164,7 @@
 
             </LinearLayout>
 
-            <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/id_SignIn_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -134,6 +172,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="@dimen/marign_23"
                 android:text="@string/sign_in"
+                android:fontFamily="@font/cairo_regular"
                 android:textColor="@color/signupsignintextcolor"
                 android:textSize="@dimen/textsize_20"
                 android:textStyle="bold" />

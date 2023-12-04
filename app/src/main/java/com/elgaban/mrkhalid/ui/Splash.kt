@@ -21,15 +21,15 @@ class Splash : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        startloading()
+        startLoading()
     }
 
     override fun onResume() {
         super.onResume()
-        startloading()
+        startLoading()
     }
 
-    private fun startloading() {
+    private fun startLoading() {
         // Start long running operation in a background thread
         Thread {
             while (progressStatus < 100) {

@@ -1,7 +1,7 @@
 package com.elgaban.mrkhalid.ui
 
 import android.app.Activity
-import android.graphics.Bitmap
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.text.InputFilter
@@ -14,47 +14,42 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatImageView
-import androidx.lifecycle.lifecycleScope
 import com.airbnb.lottie.LottieAnimationView
 import com.chivorn.smartmaterialspinner.SmartMaterialSpinner
 import com.elgaban.mrkhalid.R
+import com.elgaban.mrkhalid.utils.appUtils.AppConstant.Constants.STUDENT
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.hideKeyboard
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastError
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastNoInternet
 import com.elgaban.mrkhalid.utils.appUtils.Utils
 import com.elgaban.mrkhalid.utils.customDatePicker.DatePicker
 import com.elgaban.mrkhalid.utils.customSwitch.customSwitch
-import com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoButton
-import com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoEditText
 import com.github.drjacky.imagepicker.ImagePicker
 import com.github.drjacky.imagepicker.constant.ImageProvider
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.storage.FirebaseStorage
 import com.thekhaeng.pushdownanim.PushDownAnim
-import id.zelory.compressor.Compressor
-import id.zelory.compressor.constraint.format
-import id.zelory.compressor.constraint.quality
-import id.zelory.compressor.constraint.resolution
-import id.zelory.compressor.constraint.size
-import kotlinx.coroutines.launch
-import java.io.File
 
 class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
 
     private var dayDatePicker: DatePicker? = null
     private var monthDatePicker: DatePicker? = null
     private var yearDatePicker: DatePicker? = null
-    private var userNameEditText: cairoEditText? = null
-    private var phoneEditText: cairoEditText? = null
-    private var doneButton: cairoButton? = null
+    private var phoneEditText: AppCompatEditText? = null
+    private var phoneParentEditText: AppCompatEditText? = null
+    private var doneButton: AppCompatButton? = null
     private var imgProfile: AppCompatImageView? = null
     private var genderCustomSwitch: customSwitch? = null
     private var animationLoading: LottieAnimationView? = null
 
-    private var file: File? = null
-
     private var mProfileUri: Uri? = null
     private var ageSpinner: SmartMaterialSpinner<String>? = null
     private var gradeList: MutableList<String>? = null
+    private var grade: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
@@ -63,8 +58,8 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
 
         /////*     initialize view   */////
         imgProfile = findViewById(R.id.imgProfile)
-        userNameEditText = findViewById(R.id.id_userName_EditText)
         phoneEditText = findViewById(R.id.id_Phone_EditText)
+        phoneParentEditText = findViewById(R.id.id_Phone_parent_EditText)
         dayDatePicker = findViewById(R.id.id_day_DatePicker)
         monthDatePicker = findViewById(R.id.id_month_DatePicker)
         yearDatePicker = findViewById(R.id.id_year_DatePicker)
@@ -101,9 +96,9 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
 
         gradeList = ArrayList()
 
-        gradeList?.add("first")
-        gradeList?.add("second")
-        gradeList?.add("third")
+        gradeList?.add("الأول")
+        gradeList?.add("الثاني")
+        gradeList?.add("الثالث")
 
         ageSpinner?.item = gradeList
 
@@ -111,8 +106,7 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
             override fun onItemSelected(
                 adapterView: AdapterView<*>, view: View, position: Int, id: Long
             ) {
-                Toast.makeText(this@AboutYouActivity, gradeList!![position], Toast.LENGTH_SHORT)
-                    .show()
+                grade = gradeList!![position]
             }
 
             override fun onNothingSelected(adapterView: AdapterView<*>) {}
@@ -130,9 +124,9 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun complete() {
         /////*   Get  Email && Password    */////
-        var gender = ""
-        val username: String = userNameEditText?.text.toString()
+        val gender: String
         val phone: String = phoneEditText?.text.toString()
+        val phoneParent: String = phoneParentEditText?.text.toString()
         val getGender: String = genderCustomSwitch?.checked.toString()
         val day: String? = dayDatePicker?.seletedItem
         val month: String? = monthDatePicker?.seletedItem
@@ -145,43 +139,67 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
         }
 
         /////*   Check if username ,gender and date of birth  are entered     */////
-        if (!validate(username, phone, gender, dateOfBirth)) {
+        if (!validate(phone, phoneParent, gender, dateOfBirth)) {
             return
         } else {
-            login(username, phone, gender, dateOfBirth)
+            hideKeyboard()
+            if (Utils.hasInternetConnection(this)) {
+                completeData(phone, phoneParent, gender, dateOfBirth)
+            } else {
+                showToastNoInternet(this)
+            }
         }
     }
 
-    private fun login(username: String, phone: String, gender: String, dateOfBirth: String) {
+    private fun completeData(
+        phone: String, phoneParent: String, gender: String, dateOfBirth: String
+    ) {
         animationLoading?.visibility = View.VISIBLE
-        Toast.makeText(this, "success$username $phone $gender $dateOfBirth", Toast.LENGTH_LONG)
-            .show()
-        hideKeyboard()
-        if (Utils.hasInternetConnection(this)) {
-//            lifecycleScope.launch {
-//                val compressedImage = Compressor.compress(this@AboutYouActivity, file!!) {
-//                    resolution(640, 320)
-//                    quality(80)
-//                    format(Bitmap.CompressFormat.JPEG)
-//                    size(2_097_152) // 2 MB
-//                }
-//            }
-        } else {
-            showToastNoInternet(this)
-        }
+
+        // Upload Task with upload to directory 'file'
+        // and name of the file remains same
+        FirebaseStorage.getInstance().reference.child(STUDENT)
+            .child(FirebaseAuth.getInstance().uid!!).putFile(mProfileUri!!)
+            .addOnProgressListener {
+                val progress =
+                    100.0 * it.bytesTransferred / it.totalByteCount
+                Log.e("progress", progress.toString())
+            }.addOnSuccessListener {
+                // This listener is triggered when the file is uploaded successfully.
+                // Using the below code you can get the download url of the file
+                FirebaseStorage.getInstance().reference.child(STUDENT)
+                    .child(FirebaseAuth.getInstance().uid!!)
+                    .downloadUrl.addOnSuccessListener { uri ->
+                        val imageUrl: String = uri.toString()
+                        Log.e("Firebase", "download passed")
+
+                        FirebaseFirestore.getInstance().collection(STUDENT)
+                            .document(FirebaseAuth.getInstance().uid!!)
+                            .update(
+                                "phone", phone, "parentPhone", phoneParent,
+                                "grade", grade, "birthDate", dateOfBirth, "image", imageUrl,
+                                "gender", gender, "profileCompleted", "1"
+                            )
+                            .addOnCompleteListener {
+                                if (it.isSuccessful) {
+                                    startActivity(Intent(this, MainActivity::class.java))
+                                    finish()
+                                } else {
+                                    // error
+                                    animationLoading?.visibility = View.GONE
+                                    showToastError(this, it.exception?.message.toString())
+                                }
+                            }
+                    }
+            }.addOnFailureListener {
+                Log.e("Firebase", "Failed in downloading")
+            }
     }
 
     private fun validate(
-        username: String, phone: String, gender: String, dateOfBirth: String
+        phone: String, phoneParent: String, gender: String, dateOfBirth: String
     ): Boolean {
         var valid = true
-        if (username.isEmpty()) {
-            userNameEditText?.error = getString(R.string.validusername)
-            userNameEditText?.isFocusable = true
-            valid = false
-        } else {
-            userNameEditText?.error = null
-        }
         if (phone.isEmpty() || phone.length < 11) {
             phoneEditText?.error = getString(R.string.validPhone)
             phoneEditText?.isFocusable = true
@@ -189,16 +207,27 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
         } else {
             phoneEditText?.error = null
         }
+        if (phoneParent.isEmpty() || phoneParent.length < 11) {
+            phoneParentEditText?.error = getString(R.string.validPhone)
+            phoneParentEditText?.isFocusable = true
+            valid = false
+        } else {
+            phoneParentEditText?.error = null
+        }
+        if (grade == null) {
+            showToastError(this, getString(R.string.gradeNumber))
+            valid = false
+        }
         if (mProfileUri == null) {
-            showToastError(this, "أضف صورة شخصية")
+            showToastError(this, getString(R.string.image))
             valid = false
         }
         if (gender.isEmpty()) {
-            showToastError(this, "اختر النوع")
+            showToastError(this, getString(R.string.gender))
             valid = false
         }
         if (dateOfBirth == "") {
-            showToastError(this, "اختر تاريخ الميلاد")
+            showToastError(this, getString(R.string.birthdate))
             valid = false
         }
         return valid
@@ -206,6 +235,7 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun checkPhoneNumberLength() {
         phoneEditText?.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(11))
+        phoneParentEditText?.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(11))
     }
 
     private val profileLauncher =
@@ -222,8 +252,6 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
     private fun parseError(activityResult: ActivityResult) {
         if (activityResult.resultCode == ImagePicker.RESULT_ERROR) {
             showToastError(this, ImagePicker.getError(activityResult.data))
-        } else {
-            showToastError(this, "Task Cancelled")
         }
     }
 

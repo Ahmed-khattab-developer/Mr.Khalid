@@ -6,24 +6,30 @@ import android.text.InputFilter
 import android.util.Patterns
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
 import com.airbnb.lottie.LottieAnimationView
 import com.elgaban.mrkhalid.R
+import com.elgaban.mrkhalid.data.model.Student
+import com.elgaban.mrkhalid.utils.appUtils.AppConstant.Constants.STUDENT
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.hideKeyboard
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastError
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastNoInternet
 import com.elgaban.mrkhalid.utils.appUtils.Utils
-import com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoButton
-import com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoEditText
-import com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
+import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
 import com.thekhaeng.pushdownanim.PushDownAnim
 
 class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var emailEditText: cairoEditText? = null
-    private var passwordEditText: cairoEditText? = null
-    private var signUpButton: cairoButton? = null
-    private var login: cairoTextView? = null
+    private var userNameEditText: AppCompatEditText? = null
+    private var emailEditText: AppCompatEditText? = null
+    private var passwordEditText: ShowHidePasswordEditText? = null
+    private var signUpButton: AppCompatButton? = null
+    private var login: AppCompatTextView? = null
     private var animationLoading: LottieAnimationView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +38,9 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
 
         /////*     initialize view   */////
         login = findViewById(R.id.id_SignIn_TextView)
-        emailEditText = findViewById(R.id.id_Email_EditText)
-        passwordEditText = findViewById(R.id.id_password_EditText)
+        userNameEditText = findViewById(R.id.userName_EditText)
+        emailEditText = findViewById(R.id.email_EditText)
+        passwordEditText = findViewById(R.id.password_EditText)
         signUpButton = findViewById(R.id.id_signUp_Button)
         animationLoading = findViewById(R.id.animation_loading)
         checkPassLength()
@@ -53,30 +60,36 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         if (v === signUpButton) {
             signUpFunction()
         }
-
     }
 
     private fun signUpFunction() {
-
         /////*   Get  Email  && Name  && Password    */////
+        val username: String = userNameEditText?.text.toString()
         val email: String = emailEditText?.text.toString()
         val password: String = passwordEditText?.text.toString()
 
         /////*   Check if email and password written and valid   */////
-        if (!validate(email, password)) {
+        if (!validate(username, email, password)) {
             return
         } else {
             hideKeyboard()
             if (Utils.hasInternetConnection(this)) {
-                signup(email, password)
+                signup(username, email, password)
             } else {
                 showToastNoInternet(this)
             }
         }
     }
 
-    private fun validate(email: String, password: String): Boolean {
+    private fun validate(userName: String, email: String, password: String): Boolean {
         var valid = true
+        if (userName.isEmpty()) {
+            userNameEditText?.error = getString(R.string.validusername)
+            userNameEditText?.isFocusable = true
+            valid = false
+        } else {
+            userNameEditText?.error = null
+        }
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText?.error = getString(R.string.validemail)
             emailEditText?.isFocusable = true
@@ -98,20 +111,32 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
         passwordEditText?.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(12))
     }
 
-    private fun signup(email: String, password: String) {
+    private fun signup(userName: String, email: String, password: String) {
         animationLoading?.visibility = View.VISIBLE
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
                     // success
-                    startActivity(Intent(this, AboutYouActivity::class.java))
-                    finish()
+                    val student = Student(
+                        it.result?.user?.uid!!, userName, "", "",
+                        email, password, "", "", "", "", "0"
+                    )
+
+                    FirebaseFirestore.getInstance().collection(STUDENT)
+                        .document(it.result?.user?.uid!!).set(student, SetOptions.merge())
+                        .addOnSuccessListener {
+                            startActivity(Intent(this, AboutYouActivity::class.java))
+                            finish()
+                        }
+                        .addOnFailureListener { e ->
+                            showToastError(this@SignUpActivity, e.message.toString())
+                        }
+
                 } else {
                     // error
                     animationLoading?.visibility = View.GONE
-                    showToastError(this, "مشكلة في تسجيل الدخول حاول لاحقا")
+                    showToastError(this, it.exception?.message.toString())
                 }
             }
     }
-
 }

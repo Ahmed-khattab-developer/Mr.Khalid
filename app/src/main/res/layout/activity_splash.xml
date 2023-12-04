@@ -7,12 +7,11 @@
     android:background="@drawable/splash_screen_bg"
     tools:context=".ui.Splash">
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/id_material_ImageView"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_centerInParent="true"
-        android:layout_centerVertical="true"
         android:layout_marginStart="70dp"
         android:layout_marginEnd="70dp"
         android:src="@drawable/khalid_text" />
@@ -28,13 +27,14 @@
         android:layout_marginTop="15dp"
         android:max="100" />
 
-    <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/margin_40"
         android:gravity="center"
+        android:fontFamily="@font/cairo_regular"
         android:text="@string/designed"
         android:textColor="@color/white"
         android:textSize="12sp" />

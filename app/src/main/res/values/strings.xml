@@ -4,36 +4,36 @@
     <string name="designed">Developed by \n Ahmed Khattab</string>
 
     <string name="sign_in">Sign In</string>
-
     <string name="sign_up">Sign Up</string>
-
-    <string name="forgot_password">Forgot ?</string>
-
+    <string name="forgot_password">Forgot Password?</string>
     <string name="aboutyou">About You</string>
+    <string name="forget_password">Forget Password</string>
 
-    <string name="phone">Phone</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
+
+    <string name="phone">رقم الهاتف</string>
+    <string name="phone_parent">رقم هاتف ولي الأمر</string>
+    <string name="email">الايميل</string>
+    <string name="password">الرقم السري</string>
 
     <string name="validPhone">أدخل رقم هاتف صحيح</string>
     <string name="validpassword">أدخل رقم سري اكبر من 6 أحرف</string>
     <string name="enteryourname">أدخل أسمك بالكامل</string>
     <string name="validemail">أدخل إيميل صحيح</string>
-    <string name="uploadphoto">Upload your picture</string>
-    <string name="pickYourDate">Pick your date of birth</string>
-    <string name="iam">I\'m</string>
+    <string name="pickYourDate">تاريخ الميلاد</string>
+    <string name="iam">النوع</string>
     <string name="validusername">أدخل الاسم بالكامل</string>
-
-    <string name="full_name">Name</string>
-
-    <string name="text_success">Success</string>
-
-    <string name="text_error">Error</string>
-
+    <string name="full_name">الاسم بالكامل</string>
+    <string name="text_success">نجاح</string>
+    <string name="text_error">خطأ</string>
     <string name="text_no_internet">هناك مشكلة في اتصالك بالانترنت</string>
-
-
     <string name="connected_to_internet">تأكد أن هاتفك متصلا بالانترنت</string>
-    <string name="grade">Grade</string>
+    <string name="grade">الصف</string>
+    <string name="image">أضف صورة شخصية</string>
+    <string name="gender">اختر النوع</string>
+    <string name="birthdate">اختر تاريخ الميلاد</string>
+    <string name="send">Send</string>
+    <string name="send_email">تم ارسال رساله الي ايميلك</string>
+    <string name="incorrect_email_or_password">هناك خطأ في الايميل او الرقم السري</string>
+    <string name="gradeNumber">أختر الصف الدراسي</string>
 
 </resources>

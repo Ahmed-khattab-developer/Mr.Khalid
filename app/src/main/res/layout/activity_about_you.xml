@@ -10,14 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:background="@drawable/backgroud"
+        android:background="@drawable/background"
         android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/id_aboutyou_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -25,6 +25,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="64dp"
+                android:fontFamily="@font/cairo_regular"
                 android:text="@string/aboutyou"
                 android:textColor="@color/signupsignintextcolor"
                 android:textSize="@dimen/textsize_30"
@@ -57,7 +58,7 @@
                     android:src="@drawable/ic_profile" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_Name_textInputLayout"
+                    android:id="@+id/id_Phone_textInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_below="@+id/imgProfile"
@@ -70,52 +71,13 @@
                     android:layout_marginRight="@dimen/marign_23"
                     android:background="@null">
 
-                    <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoEditText
-                        android:id="@+id/id_userName_EditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:hint="@string/full_name"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/textsize_18" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <View
-                    android:id="@+id/id_view_1"
-                    android:layout_width="match_parent"
-                    android:layout_height="2dp"
-                    android:layout_below="@+id/id_Name_textInputLayout"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_2"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="@dimen/marign_23"
-                    android:background="@color/linecolor" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_Phone_textInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_below="@+id/id_view_1"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/marign_23"
-                    android:layout_marginLeft="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_23"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="@dimen/marign_23"
-                    android:background="@null">
-
-                    <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoEditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/id_Phone_EditText"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
+                        android:gravity="left|center"
+                        android:fontFamily="@font/cairo_regular"
                         android:hint="@string/phone"
                         android:inputType="phone"
                         android:paddingStart="10dp"
@@ -140,8 +102,8 @@
                     android:layout_marginRight="@dimen/marign_23"
                     android:background="@color/linecolor" />
 
-                <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
-                    android:id="@+id/age_spinner"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/id_Phone2_textInputLayout"
                     android:layout_width="match_parent"
                     android:layout_height="60dp"
                     android:layout_below="@+id/id_view_2"
@@ -150,17 +112,65 @@
                     android:layout_marginStart="@dimen/marign_23"
                     android:layout_marginLeft="@dimen/marign_23"
                     android:layout_marginTop="@dimen/marign_23"
+                    android:layout_marginEnd="26dp"
+                    android:layout_marginRight="@dimen/marign_23"
+                    android:background="@null">
+
+                    <androidx.appcompat.widget.AppCompatEditText
+                        android:id="@+id/id_Phone_parent_EditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@null"
+                        android:gravity="left|center"
+                        android:fontFamily="@font/cairo_regular"
+                        android:hint="@string/phone_parent"
+                        android:inputType="phone"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:textColor="@color/primarytext"
+                        android:textColorHint="@color/gray"
+                        android:textSize="@dimen/textsize_18" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <View
+                    android:id="@+id/id_view_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_below="@+id/id_Phone2_textInputLayout"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="27dp"
+                    android:layout_marginLeft="@dimen/marign_23"
+                    android:layout_marginTop="@dimen/marign_2"
+                    android:layout_marginEnd="26dp"
+                    android:layout_marginRight="@dimen/marign_23"
+                    android:background="@color/linecolor" />
+
+                <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                    android:id="@+id/age_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_below="@+id/id_view_3"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="@dimen/marign_23"
+                    android:layout_marginLeft="@dimen/marign_23"
+                    android:textAlignment="viewStart"
+                    android:layout_marginTop="@dimen/marign_23"
                     android:layout_marginEnd="@dimen/marign_23"
                     android:layout_marginRight="@dimen/marign_23"
                     android:background="@null"
+                    android:paddingEnd="10dp"
+                    android:paddingStart="10dp"
                     android:fontFamily="@font/cairo_regular"
                     android:spinnerMode="dropdown"
                     android:textStyle="normal"
+                    app:smsp_alwaysShowFloatingLabel="true"
                     app:smsp_arrowColor="@color/gray"
                     app:smsp_arrowPaddingTop="@dimen/_5sdp"
                     app:smsp_arrowSize="@dimen/_10sdp"
                     app:smsp_enableDismissSearch="false"
-                    app:smsp_alwaysShowFloatingLabel="true"
                     app:smsp_enableErrorLabel="false"
                     app:smsp_enableFloatingLabel="true"
                     app:smsp_enableSearchHeader="false"
@@ -179,7 +189,7 @@
                     app:smsp_underlineSize="0dp" />
 
                 <View
-                    android:id="@+id/id_view_3"
+                    android:id="@+id/id_view_4"
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_below="@+id/age_spinner"
@@ -192,14 +202,15 @@
                     android:layout_marginRight="@dimen/marign_23"
                     android:background="@color/linecolor" />
 
-                <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/id_pickYourDate_TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/id_view_3"
+                    android:layout_below="@+id/id_view_4"
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="@dimen/marign_23"
                     android:layout_marginTop="@dimen/marign_23"
+                    android:fontFamily="@font/cairo_regular"
                     android:text="@string/pickYourDate"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/textsize_20" />
@@ -238,7 +249,7 @@
                         android:layout_weight="1" />
                 </LinearLayout>
 
-                <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/id_iam_TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -246,6 +257,7 @@
                     android:layout_alignParentStart="true"
                     android:layout_marginStart="@dimen/marign_23"
                     android:layout_marginTop="@dimen/marign_24"
+                    android:fontFamily="@font/cairo_regular"
                     android:text="@string/iam"
                     android:textColor="@color/gray"
                     android:textSize="@dimen/textsize_20" />
@@ -270,7 +282,7 @@
 
             </RelativeLayout>
 
-            <com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoButton
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/id_done_Button"
                 android:layout_width="@dimen/height_50"
                 android:layout_height="@dimen/height_50"
@@ -278,7 +290,8 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="@dimen/marign_23"
                 android:layout_marginBottom="@dimen/marign_23"
-                android:background="@drawable/ic_done_background" />
+                android:background="@drawable/ic_done_background"
+                android:fontFamily="@font/cairo_regular" />
 
         </RelativeLayout>
 

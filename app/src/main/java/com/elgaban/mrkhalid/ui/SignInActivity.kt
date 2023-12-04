@@ -5,26 +5,27 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatTextView
 import com.airbnb.lottie.LottieAnimationView
 import com.elgaban.mrkhalid.R
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.hideKeyboard
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastError
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastNoInternet
 import com.elgaban.mrkhalid.utils.appUtils.Utils
-import com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoButton
-import com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoEditText
-import com.elgaban.mrkhalid.utils.fontsmaterialuiux.cairoTextView
 import com.elgaban.mrkhalid.utils.userData.SessionManagement
 import com.google.firebase.auth.FirebaseAuth
+import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
 import com.thekhaeng.pushdownanim.PushDownAnim
 
 class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
-    private var signInButton: cairoButton? = null
-    private var emailEditText: cairoEditText? = null
-    private var passwordEditText: cairoEditText? = null
-    private var forgetPasswordTextView: cairoTextView? = null
-    private var signUpTextView: cairoTextView? = null
+    private var signInButton: AppCompatButton? = null
+    private var emailEditText: AppCompatEditText? = null
+    private var passwordEditText: ShowHidePasswordEditText? = null
+    private var forgetPasswordTextView: AppCompatTextView? = null
+    private var signUpTextView: AppCompatTextView? = null
     private var animationLoading: LottieAnimationView? = null
 
     private lateinit var iSessionManagement: SessionManagement
@@ -55,6 +56,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
         if (v === forgetPasswordTextView) {
+            startActivity(Intent(this, ForgetPasswordActivity::class.java))
         }
 
         if (v === signUpTextView) {
@@ -88,14 +90,14 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
         var valid = true
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             emailEditText?.error = getString(R.string.validemail)
-            emailEditText?.isFocusable =true
+            emailEditText?.isFocusable = true
             valid = false
         } else {
             emailEditText?.error = null
         }
         if (password.isEmpty() || password.length < 6 || password.length > 12) {
             passwordEditText?.error = getString(R.string.validpassword)
-            passwordEditText?.isFocusable =true
+            passwordEditText?.isFocusable = true
             valid = false
         } else {
             passwordEditText?.error = null
@@ -118,7 +120,7 @@ class SignInActivity : AppCompatActivity(), View.OnClickListener {
                 } else {
                     // error
                     animationLoading?.visibility = View.GONE
-                    showToastError(this,"Incorrect email or password")
+                    showToastError(this, getString(R.string.incorrect_email_or_password))
                 }
             }
     }
