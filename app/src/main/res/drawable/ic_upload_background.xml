@@ -5,10 +5,10 @@
             <solid android:color="@color/colorPrimaryDark" />
 
             <padding
-                android:left="@dimen/marign_1"
-                android:top="@dimen/marign_1"
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:left="@dimen/_1sdp"
+                android:top="@dimen/_1sdp"
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>

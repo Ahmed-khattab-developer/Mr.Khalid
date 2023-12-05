@@ -220,10 +220,10 @@ public class DatePicker extends NestedScrollView {
                 return;
             }
             if (position == i) {
-                itemView.setTextColor(getResources().getColor(R.color.spineractivecolor));
+                itemView.setTextColor(getResources().getColor(R.color.spinnerActiveColor));
                 itemView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 24);
             } else {
-                itemView.setTextColor(getResources().getColor(R.color.spinerunfocusedcolor));
+                itemView.setTextColor(getResources().getColor(R.color.spinnerUnFocusedColor));
                 itemView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
             }
         }

@@ -8,15 +8,11 @@ import android.text.InputFilter
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
-import android.widget.AdapterView.*
-import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatImageView
 import com.airbnb.lottie.LottieAnimationView
 import com.chivorn.smartmaterialspinner.SmartMaterialSpinner
 import com.elgaban.mrkhalid.R
@@ -24,17 +20,20 @@ import com.elgaban.mrkhalid.utils.appUtils.AppConstant.Constants.STUDENT
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.hideKeyboard
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastError
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastNoInternet
+import com.elgaban.mrkhalid.utils.appUtils.BaseActivity
 import com.elgaban.mrkhalid.utils.appUtils.Utils
 import com.elgaban.mrkhalid.utils.customDatePicker.DatePicker
 import com.elgaban.mrkhalid.utils.customSwitch.customSwitch
+import com.elgaban.mrkhalid.utils.userData.SessionManagement
 import com.github.drjacky.imagepicker.ImagePicker
 import com.github.drjacky.imagepicker.constant.ImageProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
+import com.rishabhharit.roundedimageview.RoundedImageView
 import com.thekhaeng.pushdownanim.PushDownAnim
 
-class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
+class AboutYouActivity : BaseActivity(), View.OnClickListener {
 
     private var dayDatePicker: DatePicker? = null
     private var monthDatePicker: DatePicker? = null
@@ -42,7 +41,7 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
     private var phoneEditText: AppCompatEditText? = null
     private var phoneParentEditText: AppCompatEditText? = null
     private var doneButton: AppCompatButton? = null
-    private var imgProfile: AppCompatImageView? = null
+    private var imgProfile: RoundedImageView? = null
     private var genderCustomSwitch: customSwitch? = null
     private var animationLoading: LottieAnimationView? = null
 
@@ -51,10 +50,14 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
     private var gradeList: MutableList<String>? = null
     private var grade: String? = null
 
+    private lateinit var iSessionManagement: SessionManagement
+
     override fun onCreate(savedInstanceState: Bundle?) {
         AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_you)
+
+        iSessionManagement = SessionManagement(this)
 
         /////*     initialize view   */////
         imgProfile = findViewById(R.id.imgProfile)
@@ -96,13 +99,12 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
 
         gradeList = ArrayList()
 
-        gradeList?.add("الأول")
-        gradeList?.add("الثاني")
-        gradeList?.add("الثالث")
+        gradeList?.add("الأول الثانوي")
+        gradeList?.add("الثاني الثانوي")
+        gradeList?.add("الثالث الثانوي")
 
         ageSpinner?.item = gradeList
-
-        ageSpinner?.onItemSelectedListener = object : OnItemSelectedListener {
+        ageSpinner?.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 adapterView: AdapterView<*>, view: View, position: Int, id: Long
             ) {
@@ -182,6 +184,12 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
                             )
                             .addOnCompleteListener {
                                 if (it.isSuccessful) {
+                                    iSessionManagement.createLoginSession(
+                                        true, FirebaseAuth.getInstance().uid!!,
+                                        intent.getStringExtra("name")!!, phone,
+                                        phoneParent, intent.getStringExtra("email")!!, grade!!,
+                                        dateOfBirth, imageUrl, gender, "1"
+                                    )
                                     startActivity(Intent(this, MainActivity::class.java))
                                     finish()
                                 } else {
@@ -227,7 +235,7 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
             valid = false
         }
         if (dateOfBirth == "") {
-            showToastError(this, getString(R.string.birthdate))
+            showToastError(this, getString(R.string.birthDate))
             valid = false
         }
         return valid
@@ -243,6 +251,8 @@ class AboutYouActivity : AppCompatActivity(), View.OnClickListener {
             if (it.resultCode == Activity.RESULT_OK) {
                 val uri = it.data?.data!!
                 mProfileUri = uri
+                imgProfile?.setCornerRadius(20)
+                imgProfile?.setPadding(0, 0, 0, 0)
                 imgProfile?.setImageURI(uri)
             } else {
                 parseError(it)

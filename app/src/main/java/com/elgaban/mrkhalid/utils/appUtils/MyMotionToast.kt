@@ -27,9 +27,9 @@ class MyMotionToast {
         const val TOAST_NO_INTERNET = "NO INTERNET"
         const val GRAVITY_BOTTOM = 80
 
-        private var successToastColor: Int = color.success_color
-        private var errorToastColor: Int = color.error_color
-        private var warningToastColor: Int = color.warning_color
+        private var successToastColor: Int = color.successColor
+        private var errorToastColor: Int = color.errorColor
+        private var warningToastColor: Int = color.warningColor
 
         // all dark toast CTA
         fun darkToast(
@@ -200,7 +200,7 @@ class MyMotionToast {
         private fun setBackgroundAndFilter(layout: View, context: Context) {
             val drawable = ContextCompat.getDrawable(context, drawable.toast_round_background)
             drawable?.colorFilter = PorterDuffColorFilter(
-                ContextCompat.getColor(context, color.dark_bg_color), PorterDuff.Mode.MULTIPLY
+                ContextCompat.getColor(context, color.darkBgColor), PorterDuff.Mode.MULTIPLY
             )
             layout.background = drawable
         }

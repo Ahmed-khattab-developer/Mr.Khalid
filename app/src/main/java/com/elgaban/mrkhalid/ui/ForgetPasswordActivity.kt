@@ -2,7 +2,6 @@ package com.elgaban.mrkhalid.ui
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import com.airbnb.lottie.LottieAnimationView
@@ -11,11 +10,12 @@ import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.hideKeyboard
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastError
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastNoInternet
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastSuccess
+import com.elgaban.mrkhalid.utils.appUtils.BaseActivity
 import com.elgaban.mrkhalid.utils.appUtils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.thekhaeng.pushdownanim.PushDownAnim
 
-class ForgetPasswordActivity : AppCompatActivity(), View.OnClickListener {
+class ForgetPasswordActivity : BaseActivity(), View.OnClickListener {
     private var emailEditText: AppCompatEditText? = null
     private var doneButton: AppCompatButton? = null
     private var animationLoading: LottieAnimationView? = null
@@ -56,7 +56,7 @@ class ForgetPasswordActivity : AppCompatActivity(), View.OnClickListener {
     private fun validate(email: String): Boolean {
         var valid = true
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText?.error = getString(R.string.validemail)
+            emailEditText?.error = getString(R.string.validEmail)
             emailEditText?.isFocusable = true
             valid = false
         } else {
@@ -71,7 +71,7 @@ class ForgetPasswordActivity : AppCompatActivity(), View.OnClickListener {
             .addOnCompleteListener {
                 animationLoading?.visibility = View.GONE
                 if (it.isSuccessful) {
-                    showToastSuccess(this@ForgetPasswordActivity, getString(R.string.send_email))
+                    showToastSuccess(this@ForgetPasswordActivity, getString(R.string.sendEmail))
                 } else {
                     showToastError(this@ForgetPasswordActivity, it.exception?.message.toString())
                 }

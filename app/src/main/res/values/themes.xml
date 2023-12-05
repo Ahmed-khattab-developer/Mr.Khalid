@@ -29,11 +29,15 @@
         <!--buttons color-->
         <item name="colorAccent">@color/black</item>
         <!--title and message color-->
-        <item name="android:textColorPrimary">@color/primarytext</item>
+        <item name="android:textColorPrimary">@color/primaryText</item>
         <!--dialog background-->
         <item name="android:windowBackground">@android:color/white</item>
     </style>
     <style name="editText" parent="Base.TextAppearance.AppCompat.Button" >
-        <item name="backgroundTint">@color/linecolor</item>
+        <item name="backgroundTint">@color/lineColor</item>
+    </style>
+
+    <style name="spinner_style">
+        <item name="android:background">@drawable/background_spinner</item>
     </style>
 </resources>

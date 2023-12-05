@@ -21,14 +21,13 @@
                 android:id="@+id/id_aboutyou_TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="64dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="@dimen/_64sdp"
                 android:fontFamily="@font/cairo_regular"
-                android:text="@string/aboutyou"
-                android:textColor="@color/signupsignintextcolor"
-                android:textSize="@dimen/textsize_30"
+                android:text="@string/aboutYou"
+                android:textColor="@color/signUpSignInTextColor"
+                android:textSize="@dimen/_25sdp"
                 android:textStyle="bold" />
 
             <RelativeLayout
@@ -37,38 +36,40 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/id_aboutyou_TextView"
                 android:layout_centerHorizontal="true"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="23dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginLeft="@dimen/_23sdp"
+                android:layout_marginTop="@dimen/_23sdp"
+                android:layout_marginRight="@dimen/_23sdp"
                 android:background="@drawable/rect">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/imgProfile"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
+                <RelativeLayout
+                    android:id="@+id/cameraRL"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_70sdp"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/male_border"
-                    android:padding="10dp"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/ic_profile" />
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/view_border">
+
+                    <com.rishabhharit.roundedimageview.RoundedImageView
+                        android:id="@+id/imgProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_centerInParent="true"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_profile" />
+
+                </RelativeLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_Phone_textInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_below="@+id/imgProfile"
+                    android:layout_height="@dimen/_60sdp"
+                    android:layout_below="@+id/cameraRL"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/marign_23"
-                    android:layout_marginLeft="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_23"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="@dimen/marign_23"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@null">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -76,44 +77,40 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:gravity="left|center"
                         android:fontFamily="@font/cairo_regular"
+                        android:gravity="right|center"
                         android:hint="@string/phone"
                         android:inputType="phone"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:textColor="@color/primarytext"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_5sdp"
+                        android:textColor="@color/primaryText"
                         android:textColorHint="@color/gray"
-                        android:textSize="@dimen/textsize_18" />
+                        android:textSize="@dimen/_12ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
                     android:id="@+id/id_view_2"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:layout_below="@+id/id_Phone_textInputLayout"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_2"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="@dimen/marign_23"
-                    android:background="@color/linecolor" />
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@color/lineColor" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/id_Phone2_textInputLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="@dimen/_60sdp"
                     android:layout_below="@+id/id_view_2"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/marign_23"
-                    android:layout_marginLeft="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_23"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="@dimen/marign_23"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@null">
 
                     <androidx.appcompat.widget.AppCompatEditText
@@ -121,55 +118,51 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@null"
-                        android:gravity="left|center"
                         android:fontFamily="@font/cairo_regular"
-                        android:hint="@string/phone_parent"
+                        android:gravity="right|center"
+                        android:hint="@string/phoneParent"
                         android:inputType="phone"
-                        android:paddingStart="10dp"
-                        android:paddingEnd="10dp"
-                        android:textColor="@color/primarytext"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_5sdp"
+                        android:textColor="@color/primaryText"
                         android:textColorHint="@color/gray"
-                        android:textSize="@dimen/textsize_18" />
+                        android:textSize="@dimen/_12ssp" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <View
                     android:id="@+id/id_view_3"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:layout_below="@+id/id_Phone2_textInputLayout"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_2"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="@dimen/marign_23"
-                    android:background="@color/linecolor" />
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@color/lineColor" />
 
                 <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
                     android:id="@+id/age_spinner"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="@dimen/_60sdp"
                     android:layout_below="@+id/id_view_3"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/marign_23"
-                    android:layout_marginLeft="@dimen/marign_23"
-                    android:textAlignment="viewStart"
-                    android:layout_marginTop="@dimen/marign_23"
-                    android:layout_marginEnd="@dimen/marign_23"
-                    android:layout_marginRight="@dimen/marign_23"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@null"
-                    android:paddingEnd="10dp"
-                    android:paddingStart="10dp"
                     android:fontFamily="@font/cairo_regular"
+                    android:paddingStart="@dimen/_5sdp"
+                    android:paddingEnd="@dimen/_5sdp"
                     android:spinnerMode="dropdown"
                     android:textStyle="normal"
                     app:smsp_alwaysShowFloatingLabel="true"
                     app:smsp_arrowColor="@color/gray"
-                    app:smsp_arrowPaddingTop="@dimen/_5sdp"
-                    app:smsp_arrowSize="@dimen/_10sdp"
+                    app:smsp_arrowPaddingLeft="20dp"
+                    app:smsp_arrowPaddingRight="20dp"
+                    app:smsp_arrowSize="20dp"
                     app:smsp_enableDismissSearch="false"
                     app:smsp_enableErrorLabel="false"
                     app:smsp_enableFloatingLabel="true"
@@ -178,12 +171,13 @@
                     app:smsp_floatingLabelText="@string/grade"
                     app:smsp_hint="@string/grade"
                     app:smsp_hintColor="@color/gray"
-                    app:smsp_hintSize="@dimen/textsize_18"
+                    app:smsp_hintSize="@dimen/_12ssp"
+                    app:smsp_isRtl="true"
                     app:smsp_itemColor="@color/gray"
                     app:smsp_itemListColor="@color/gray"
                     app:smsp_itemListHintBackgroundColor="@color/white"
                     app:smsp_itemListHintColor="#FFFFFF"
-                    app:smsp_itemSize="@dimen/textsize_18"
+                    app:smsp_itemSize="@dimen/_12ssp"
                     app:smsp_multilineError="false"
                     app:smsp_selectedItemListColor="@color/gray"
                     app:smsp_underlineSize="0dp" />
@@ -191,40 +185,38 @@
                 <View
                     android:id="@+id/id_view_4"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"
+                    android:layout_height="@dimen/_1sdp"
                     android:layout_below="@+id/age_spinner"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginLeft="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_2"
-                    android:layout_marginEnd="26dp"
-                    android:layout_marginRight="@dimen/marign_23"
-                    android:background="@color/linecolor" />
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@color/lineColor" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/id_pickYourDate_TextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/id_view_4"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_23"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:fontFamily="@font/cairo_regular"
                     android:text="@string/pickYourDate"
                     android:textColor="@color/gray"
-                    android:textSize="@dimen/textsize_20" />
+                    android:textSize="@dimen/_16ssp" />
 
                 <LinearLayout
                     android:id="@+id/id_pickYourDate_LinearLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="@dimen/_120sdp"
                     android:layout_below="@+id/id_pickYourDate_TextView"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_14"
-                    android:layout_marginEnd="@dimen/marign_23"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
                     android:background="@drawable/rect"
                     android:gravity="center"
                     android:orientation="horizontal"
@@ -254,29 +246,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/id_pickYourDate_LinearLayout"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_24"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
                     android:fontFamily="@font/cairo_regular"
                     android:text="@string/iam"
                     android:textColor="@color/gray"
-                    android:textSize="@dimen/textsize_20" />
+                    android:textSize="@dimen/_16ssp" />
 
                 <com.elgaban.mrkhalid.utils.customSwitch.customSwitch
                     android:id="@+id/id_gender_customSwitch"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/id_iam_TextView"
-                    android:layout_alignParentStart="true"
-                    android:layout_marginStart="@dimen/marign_23"
-                    android:layout_marginTop="@dimen/marign_14"
-                    android:layout_marginBottom="@dimen/marign_14"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginRight="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_15sdp"
                     app:isw_active_tint_icon_left="@android:color/transparent"
                     app:isw_active_tint_icon_right="@android:color/transparent"
                     app:isw_background_color="@color/colorPrimaryDark"
                     app:isw_icon_left="@drawable/female"
                     app:isw_icon_right="@drawable/male"
-                    app:isw_icon_size="@dimen/swithc_icon_size"
+                    app:isw_icon_size="@dimen/_20sdp"
                     app:isw_inactive_tint_icon_left="@android:color/transparent"
                     app:isw_inactive_tint_icon_right="@android:color/transparent" />
 
@@ -284,12 +276,12 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/id_done_Button"
-                android:layout_width="@dimen/height_50"
-                android:layout_height="@dimen/height_50"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_below="@+id/parentRelative"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/marign_23"
-                android:layout_marginBottom="@dimen/marign_23"
+                android:layout_marginTop="@dimen/_23sdp"
+                android:layout_marginBottom="@dimen/_23sdp"
                 android:background="@drawable/ic_done_background"
                 android:fontFamily="@font/cairo_regular" />
 
@@ -304,7 +296,7 @@
         android:layout_centerInParent="true"
         android:clickable="true"
         android:focusable="true"
-        android:padding="50dp"
+        android:padding="@dimen/_40sdp"
         android:visibility="gone"
         app:lottie_autoPlay="true"
         app:lottie_fileName="loading-animation.json"

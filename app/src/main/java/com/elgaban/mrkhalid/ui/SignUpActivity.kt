@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.util.Patterns
 import android.view.View
-import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatEditText
 import androidx.appcompat.widget.AppCompatTextView
@@ -16,6 +15,7 @@ import com.elgaban.mrkhalid.utils.appUtils.AppConstant.Constants.STUDENT
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.hideKeyboard
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastError
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastNoInternet
+import com.elgaban.mrkhalid.utils.appUtils.BaseActivity
 import com.elgaban.mrkhalid.utils.appUtils.Utils
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -23,7 +23,7 @@ import com.google.firebase.firestore.SetOptions
 import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
 import com.thekhaeng.pushdownanim.PushDownAnim
 
-class SignUpActivity : AppCompatActivity(), View.OnClickListener {
+class SignUpActivity : BaseActivity(), View.OnClickListener {
 
     private var userNameEditText: AppCompatEditText? = null
     private var emailEditText: AppCompatEditText? = null
@@ -84,21 +84,21 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
     private fun validate(userName: String, email: String, password: String): Boolean {
         var valid = true
         if (userName.isEmpty()) {
-            userNameEditText?.error = getString(R.string.validusername)
+            userNameEditText?.error = getString(R.string.validUserName)
             userNameEditText?.isFocusable = true
             valid = false
         } else {
             userNameEditText?.error = null
         }
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText?.error = getString(R.string.validemail)
+            emailEditText?.error = getString(R.string.validEmail)
             emailEditText?.isFocusable = true
             valid = false
         } else {
             emailEditText?.error = null
         }
         if (password.isEmpty() || password.length < 6 || password.length > 12) {
-            passwordEditText?.error = getString(R.string.validpassword)
+            passwordEditText?.error = getString(R.string.validPassword)
             passwordEditText?.isFocusable = true
             valid = false
         } else {
@@ -125,7 +125,10 @@ class SignUpActivity : AppCompatActivity(), View.OnClickListener {
                     FirebaseFirestore.getInstance().collection(STUDENT)
                         .document(it.result?.user?.uid!!).set(student, SetOptions.merge())
                         .addOnSuccessListener {
-                            startActivity(Intent(this, AboutYouActivity::class.java))
+                            val intent = Intent(this, AboutYouActivity::class.java)
+                            intent.putExtra("name", userName)
+                            intent.putExtra("email", email)
+                            startActivity(intent)
                             finish()
                         }
                         .addOnFailureListener { e ->

@@ -10,8 +10,8 @@
                 android:centerColor="#00FFFFFF"/>
 
             <padding
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>
@@ -24,8 +24,8 @@
                 android:centerColor="#00FFFFFF"/>
 
             <padding
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>
@@ -38,8 +38,8 @@
                 android:centerColor="#00FFFFFF"/>
 
             <padding
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>
@@ -52,8 +52,8 @@
                 android:centerColor="#00FFFFFF"/>
 
             <padding
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>
@@ -66,8 +66,8 @@
                 android:centerColor="#00FFFFFF"/>
 
             <padding
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>
@@ -80,8 +80,8 @@
                 android:centerColor="#00FFFFFF"/>
 
             <padding
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>
@@ -94,8 +94,8 @@
                 android:centerColor="#00FFFFFF"/>
 
             <padding
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>
@@ -108,8 +108,8 @@
                 android:centerColor="#00FFFFFF"/>
 
             <padding
-                android:bottom="@dimen/marign_1"
-                android:right="@dimen/marign_1" />
+                android:bottom="@dimen/_1sdp"
+                android:right="@dimen/_1sdp" />
 
         </shape>
     </item>

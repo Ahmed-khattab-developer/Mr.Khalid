@@ -50,7 +50,7 @@ class AppFunctions {
 
         fun showToastNoInternet(context: Activity) {
             MyMotionToast.darkToast(
-                context, context.getString(R.string.connected_to_internet),
+                context, context.getString(R.string.connectedToInternet),
                 MyMotionToast.TOAST_NO_INTERNET, MyMotionToast.TOAST_NO_INTERNET,
                 MyMotionToast.GRAVITY_BOTTOM, MyMotionToast.LONG_DURATION,
                 ResourcesCompat.getFont(context, R.font.helvetica_regular)
