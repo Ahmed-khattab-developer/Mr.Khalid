@@ -40,4 +40,5 @@
     <style name="spinner_style">
         <item name="android:background">@drawable/background_spinner</item>
     </style>
+
 </resources>

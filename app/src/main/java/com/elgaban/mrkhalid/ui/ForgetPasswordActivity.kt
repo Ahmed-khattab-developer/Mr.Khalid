@@ -1,11 +1,11 @@
 package com.elgaban.mrkhalid.ui
 
 import android.os.Bundle
+import android.util.Patterns
 import android.view.View
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatEditText
-import com.airbnb.lottie.LottieAnimationView
+import androidx.databinding.DataBindingUtil
 import com.elgaban.mrkhalid.R
+import com.elgaban.mrkhalid.databinding.ActivityForgetPasswordBinding
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.hideKeyboard
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastError
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastNoInternet
@@ -16,31 +16,25 @@ import com.google.firebase.auth.FirebaseAuth
 import com.thekhaeng.pushdownanim.PushDownAnim
 
 class ForgetPasswordActivity : BaseActivity(), View.OnClickListener {
-    private var emailEditText: AppCompatEditText? = null
-    private var doneButton: AppCompatButton? = null
-    private var animationLoading: LottieAnimationView? = null
+
+    private lateinit var dataBinding: ActivityForgetPasswordBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_forget_password)
+        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_forget_password)
 
-        emailEditText = findViewById(R.id.id_Email_EditText)
-        doneButton = findViewById(R.id.id_done_Button)
-        animationLoading = findViewById(R.id.animation_loading)
-
-        PushDownAnim.setPushDownAnimTo(doneButton).setScale(PushDownAnim.MODE_SCALE, 0.85f)
-            .setOnClickListener(this)
+        PushDownAnim.setPushDownAnimTo(dataBinding.doneButton)
+            .setScale(PushDownAnim.MODE_SCALE, 0.85f).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        if (v === doneButton) {
+        if (v === dataBinding.doneButton) {
             forgetFunction()
         }
     }
 
     private fun forgetFunction() {
-        /////*   Get  Email && Password    */////
-        val emailS: String = emailEditText?.text.toString()
-        /////*   Check if email and password written  valid   */////
+        val emailS: String = dataBinding.emailEditText.text.toString()
         if (!validate(emailS)) {
             return
         } else {
@@ -55,21 +49,21 @@ class ForgetPasswordActivity : BaseActivity(), View.OnClickListener {
 
     private fun validate(email: String): Boolean {
         var valid = true
-        if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText?.error = getString(R.string.validEmail)
-            emailEditText?.isFocusable = true
+        if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            dataBinding.emailEditText.error = getString(R.string.validEmail)
+            dataBinding.emailEditText.isFocusable = true
             valid = false
         } else {
-            emailEditText?.error = null
+            dataBinding.emailEditText.error = null
         }
         return valid
     }
 
     private fun forget(email: String) {
-        animationLoading?.visibility = View.VISIBLE
+        dataBinding.animationLoading.visibility = View.VISIBLE
         FirebaseAuth.getInstance().sendPasswordResetEmail(email)
             .addOnCompleteListener {
-                animationLoading?.visibility = View.GONE
+                dataBinding.animationLoading.visibility = View.GONE
                 if (it.isSuccessful) {
                     showToastSuccess(this@ForgetPasswordActivity, getString(R.string.sendEmail))
                 } else {

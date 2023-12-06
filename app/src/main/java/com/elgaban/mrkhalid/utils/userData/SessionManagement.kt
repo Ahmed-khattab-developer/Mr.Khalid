@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import com.elgaban.mrkhalid.ui.Splash
+import com.elgaban.mrkhalid.ui.SplashActivity
 import com.elgaban.mrkhalid.utils.userData.SessionManagement.Constants.BIRTHDAY
 import com.elgaban.mrkhalid.utils.userData.SessionManagement.Constants.EMAIL
 import com.elgaban.mrkhalid.utils.userData.SessionManagement.Constants.GENDER
@@ -93,7 +93,7 @@ class SessionManagement constructor(context: Context?) {
         FirebaseAuth.getInstance().signOut()
         editor!!.clear()
         editor!!.commit()
-        val intent = Intent(_context, Splash::class.java)
+        val intent = Intent(_context, SplashActivity::class.java)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -1,306 +1,309 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.AboutYouActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:background="@drawable/background"
-        android:fillViewport="true">
+        tools:context=".ui.AboutYouActivity">
 
-        <RelativeLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/id_aboutyou_TextView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_64sdp"
-                android:fontFamily="@font/cairo_regular"
-                android:text="@string/aboutYou"
-                android:textColor="@color/signUpSignInTextColor"
-                android:textSize="@dimen/_25sdp"
-                android:textStyle="bold" />
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:background="@drawable/background"
+            android:fillViewport="true">
 
             <RelativeLayout
-                android:id="@+id/parentRelative"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/id_aboutyou_TextView"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="@dimen/_23sdp"
-                android:layout_marginTop="@dimen/_23sdp"
-                android:layout_marginRight="@dimen/_23sdp"
-                android:background="@drawable/rect">
+                android:layout_height="wrap_content">
 
-                <RelativeLayout
-                    android:id="@+id/cameraRL"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_70sdp"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/id_aboutYou_TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/view_border">
+                    android:layout_marginTop="@dimen/_64sdp"
+                    android:fontFamily="@font/cairo_regular"
+                    android:text="@string/aboutYou"
+                    android:textColor="@color/signUpSignInTextColor"
+                    android:textSize="@dimen/_25sdp"
+                    android:textStyle="bold" />
 
-                    <com.rishabhharit.roundedimageview.RoundedImageView
-                        android:id="@+id/imgProfile"
+                <RelativeLayout
+                    android:id="@+id/parentRelative"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/id_aboutYou_TextView"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginLeft="@dimen/_23sdp"
+                    android:layout_marginTop="@dimen/_23sdp"
+                    android:layout_marginRight="@dimen/_23sdp"
+                    android:background="@drawable/rect">
+
+                    <RelativeLayout
+                        android:id="@+id/cameraRL"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@drawable/view_border">
+
+                        <com.rishabhharit.roundedimageview.RoundedImageView
+                            android:id="@+id/imgProfile"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/ic_profile" />
+
+                    </RelativeLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/id_Phone_textInputLayout"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_centerInParent="true"
-                        android:padding="@dimen/_10sdp"
-                        android:src="@drawable/ic_profile" />
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@+id/cameraRL"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_23sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@null">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/phoneEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:fontFamily="@font/cairo_regular"
+                            android:gravity="right|center"
+                            android:hint="@string/phone"
+                            android:inputType="phone"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingEnd="@dimen/_5sdp"
+                            android:textColor="@color/primaryText"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/_12ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:id="@+id/id_view_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/id_Phone_textInputLayout"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/lineColor" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/id_Phone2_textInputLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@+id/id_view_2"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_23sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@null">
+
+                        <androidx.appcompat.widget.AppCompatEditText
+                            android:id="@+id/phoneparentEditText"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:fontFamily="@font/cairo_regular"
+                            android:gravity="right|center"
+                            android:hint="@string/phoneParent"
+                            android:inputType="phone"
+                            android:paddingStart="@dimen/_5sdp"
+                            android:paddingEnd="@dimen/_5sdp"
+                            android:textColor="@color/primaryText"
+                            android:textColorHint="@color/gray"
+                            android:textSize="@dimen/_12ssp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <View
+                        android:id="@+id/id_view_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/id_Phone2_textInputLayout"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/lineColor" />
+
+                    <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
+                        android:id="@+id/ageSpinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_below="@+id/id_view_3"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_23sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@null"
+                        android:fontFamily="@font/cairo_regular"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:paddingEnd="@dimen/_5sdp"
+                        android:spinnerMode="dropdown"
+                        android:textStyle="normal"
+                        app:smsp_alwaysShowFloatingLabel="true"
+                        app:smsp_arrowColor="@color/gray"
+                        app:smsp_arrowPaddingLeft="20dp"
+                        app:smsp_arrowPaddingRight="20dp"
+                        app:smsp_arrowSize="20dp"
+                        app:smsp_enableDismissSearch="false"
+                        app:smsp_enableErrorLabel="false"
+                        app:smsp_enableFloatingLabel="true"
+                        app:smsp_enableSearchHeader="false"
+                        app:smsp_floatingLabelColor="@color/colorAccent"
+                        app:smsp_floatingLabelText="@string/grade"
+                        app:smsp_hint="@string/grade"
+                        app:smsp_hintColor="@color/gray"
+                        app:smsp_hintSize="@dimen/_12ssp"
+                        app:smsp_isRtl="true"
+                        app:smsp_itemColor="@color/gray"
+                        app:smsp_itemListColor="@color/gray"
+                        app:smsp_itemListHintBackgroundColor="@color/white"
+                        app:smsp_itemListHintColor="#FFFFFF"
+                        app:smsp_itemSize="@dimen/_12ssp"
+                        app:smsp_multilineError="false"
+                        app:smsp_selectedItemListColor="@color/gray"
+                        app:smsp_underlineSize="0dp" />
+
+                    <View
+                        android:id="@+id/id_view_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_below="@+id/ageSpinner"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@color/lineColor" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/id_pickYourDate_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/id_view_4"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_23sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:fontFamily="@font/cairo_regular"
+                        android:text="@string/pickYourDate"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <LinearLayout
+                        android:id="@+id/id_pickYourDate_LinearLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_120sdp"
+                        android:layout_below="@+id/id_pickYourDate_TextView"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:background="@drawable/rect"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:weightSum="3">
+
+                        <com.elgaban.mrkhalid.utils.customDatePicker.DatePicker
+                            android:id="@+id/dayDatePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <com.elgaban.mrkhalid.utils.customDatePicker.DatePicker
+                            android:id="@+id/monthDatePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+
+                        <com.elgaban.mrkhalid.utils.customDatePicker.DatePicker
+                            android:id="@+id/yearDatePicker"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1" />
+                    </LinearLayout>
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/id_iam_TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/id_pickYourDate_LinearLayout"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_23sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:fontFamily="@font/cairo_regular"
+                        android:text="@string/iam"
+                        android:textColor="@color/gray"
+                        android:textSize="@dimen/_16ssp" />
+
+                    <com.elgaban.mrkhalid.utils.customSwitch.CustomSwitch
+                        android:id="@+id/genderCustomSwitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/id_iam_TextView"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginRight="@dimen/_10sdp"
+                        android:layout_marginBottom="@dimen/_15sdp"
+                        app:isw_active_tint_icon_left="@android:color/transparent"
+                        app:isw_active_tint_icon_right="@android:color/transparent"
+                        app:isw_background_color="@color/colorPrimaryDark"
+                        app:isw_icon_left="@drawable/female"
+                        app:isw_icon_right="@drawable/male"
+                        app:isw_icon_size="@dimen/_20sdp"
+                        app:isw_inactive_tint_icon_left="@android:color/transparent"
+                        app:isw_inactive_tint_icon_right="@android:color/transparent" />
 
                 </RelativeLayout>
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_Phone_textInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_below="@+id/cameraRL"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_10sdp"
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/doneButton"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_below="@+id/parentRelative"
+                    android:layout_centerHorizontal="true"
                     android:layout_marginTop="@dimen/_23sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@null">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/id_Phone_EditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:fontFamily="@font/cairo_regular"
-                        android:gravity="right|center"
-                        android:hint="@string/phone"
-                        android:inputType="phone"
-                        android:paddingStart="@dimen/_5sdp"
-                        android:paddingEnd="@dimen/_5sdp"
-                        android:textColor="@color/primaryText"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/_12ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <View
-                    android:id="@+id/id_view_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_below="@+id/id_Phone_textInputLayout"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@color/lineColor" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/id_Phone2_textInputLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_below="@+id/id_view_2"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_23sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@null">
-
-                    <androidx.appcompat.widget.AppCompatEditText
-                        android:id="@+id/id_Phone_parent_EditText"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@null"
-                        android:fontFamily="@font/cairo_regular"
-                        android:gravity="right|center"
-                        android:hint="@string/phoneParent"
-                        android:inputType="phone"
-                        android:paddingStart="@dimen/_5sdp"
-                        android:paddingEnd="@dimen/_5sdp"
-                        android:textColor="@color/primaryText"
-                        android:textColorHint="@color/gray"
-                        android:textSize="@dimen/_12ssp" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <View
-                    android:id="@+id/id_view_3"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_below="@+id/id_Phone2_textInputLayout"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@color/lineColor" />
-
-                <com.chivorn.smartmaterialspinner.SmartMaterialSpinner
-                    android:id="@+id/age_spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_60sdp"
-                    android:layout_below="@+id/id_view_3"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_23sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@null"
-                    android:fontFamily="@font/cairo_regular"
-                    android:paddingStart="@dimen/_5sdp"
-                    android:paddingEnd="@dimen/_5sdp"
-                    android:spinnerMode="dropdown"
-                    android:textStyle="normal"
-                    app:smsp_alwaysShowFloatingLabel="true"
-                    app:smsp_arrowColor="@color/gray"
-                    app:smsp_arrowPaddingLeft="20dp"
-                    app:smsp_arrowPaddingRight="20dp"
-                    app:smsp_arrowSize="20dp"
-                    app:smsp_enableDismissSearch="false"
-                    app:smsp_enableErrorLabel="false"
-                    app:smsp_enableFloatingLabel="true"
-                    app:smsp_enableSearchHeader="false"
-                    app:smsp_floatingLabelColor="@color/colorAccent"
-                    app:smsp_floatingLabelText="@string/grade"
-                    app:smsp_hint="@string/grade"
-                    app:smsp_hintColor="@color/gray"
-                    app:smsp_hintSize="@dimen/_12ssp"
-                    app:smsp_isRtl="true"
-                    app:smsp_itemColor="@color/gray"
-                    app:smsp_itemListColor="@color/gray"
-                    app:smsp_itemListHintBackgroundColor="@color/white"
-                    app:smsp_itemListHintColor="#FFFFFF"
-                    app:smsp_itemSize="@dimen/_12ssp"
-                    app:smsp_multilineError="false"
-                    app:smsp_selectedItemListColor="@color/gray"
-                    app:smsp_underlineSize="0dp" />
-
-                <View
-                    android:id="@+id/id_view_4"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_below="@+id/age_spinner"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@color/lineColor" />
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/id_pickYourDate_TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/id_view_4"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/_23sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:fontFamily="@font/cairo_regular"
-                    android:text="@string/pickYourDate"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_16ssp" />
-
-                <LinearLayout
-                    android:id="@+id/id_pickYourDate_LinearLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_120sdp"
-                    android:layout_below="@+id/id_pickYourDate_TextView"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
-                    android:background="@drawable/rect"
-                    android:gravity="center"
-                    android:orientation="horizontal"
-                    android:weightSum="3">
-
-                    <com.elgaban.mrkhalid.utils.customDatePicker.DatePicker
-                        android:id="@+id/id_day_DatePicker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <com.elgaban.mrkhalid.utils.customDatePicker.DatePicker
-                        android:id="@+id/id_month_DatePicker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-
-                    <com.elgaban.mrkhalid.utils.customDatePicker.DatePicker
-                        android:id="@+id/id_year_DatePicker"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1" />
-                </LinearLayout>
-
-                <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/id_iam_TextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/id_pickYourDate_LinearLayout"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/_23sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:fontFamily="@font/cairo_regular"
-                    android:text="@string/iam"
-                    android:textColor="@color/gray"
-                    android:textSize="@dimen/_16ssp" />
-
-                <com.elgaban.mrkhalid.utils.customSwitch.customSwitch
-                    android:id="@+id/id_gender_customSwitch"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/id_iam_TextView"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:layout_marginRight="@dimen/_10sdp"
-                    android:layout_marginBottom="@dimen/_15sdp"
-                    app:isw_active_tint_icon_left="@android:color/transparent"
-                    app:isw_active_tint_icon_right="@android:color/transparent"
-                    app:isw_background_color="@color/colorPrimaryDark"
-                    app:isw_icon_left="@drawable/female"
-                    app:isw_icon_right="@drawable/male"
-                    app:isw_icon_size="@dimen/_20sdp"
-                    app:isw_inactive_tint_icon_left="@android:color/transparent"
-                    app:isw_inactive_tint_icon_right="@android:color/transparent" />
+                    android:layout_marginBottom="@dimen/_23sdp"
+                    android:background="@drawable/ic_done_background"
+                    android:fontFamily="@font/cairo_regular" />
 
             </RelativeLayout>
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/id_done_Button"
-                android:layout_width="@dimen/_40sdp"
-                android:layout_height="@dimen/_40sdp"
-                android:layout_below="@+id/parentRelative"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="@dimen/_23sdp"
-                android:layout_marginBottom="@dimen/_23sdp"
-                android:background="@drawable/ic_done_background"
-                android:fontFamily="@font/cairo_regular" />
+        </ScrollView>
 
-        </RelativeLayout>
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animationLoading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="@dimen/_40sdp"
+            android:visibility="gone"
+            app:lottie_autoPlay="true"
+            app:lottie_fileName="loading-animation.json"
+            app:lottie_imageAssetsFolder="images/"
+            app:lottie_loop="true" />
 
-    </ScrollView>
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animation_loading"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerInParent="true"
-        android:clickable="true"
-        android:focusable="true"
-        android:padding="@dimen/_40sdp"
-        android:visibility="gone"
-        app:lottie_autoPlay="true"
-        app:lottie_fileName="loading-animation.json"
-        app:lottie_imageAssetsFolder="images/"
-        app:lottie_loop="true" />
-
-</RelativeLayout>
+    </RelativeLayout>
+</layout>

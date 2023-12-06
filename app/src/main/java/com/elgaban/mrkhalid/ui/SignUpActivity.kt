@@ -5,70 +5,53 @@ import android.os.Bundle
 import android.text.InputFilter
 import android.util.Patterns
 import android.view.View
-import androidx.appcompat.widget.AppCompatButton
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatTextView
-import com.airbnb.lottie.LottieAnimationView
+import androidx.databinding.DataBindingUtil
 import com.elgaban.mrkhalid.R
 import com.elgaban.mrkhalid.data.model.Student
+import com.elgaban.mrkhalid.databinding.ActivitySignUpBinding
 import com.elgaban.mrkhalid.utils.appUtils.AppConstant.Constants.STUDENT
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.hideKeyboard
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastError
 import com.elgaban.mrkhalid.utils.appUtils.AppFunctions.Constants.showToastNoInternet
 import com.elgaban.mrkhalid.utils.appUtils.BaseActivity
 import com.elgaban.mrkhalid.utils.appUtils.Utils
+import com.elgaban.mrkhalid.utils.userData.SessionManagement
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.SetOptions
-import com.scottyab.showhidepasswordedittext.ShowHidePasswordEditText
 import com.thekhaeng.pushdownanim.PushDownAnim
 
 class SignUpActivity : BaseActivity(), View.OnClickListener {
 
-    private var userNameEditText: AppCompatEditText? = null
-    private var emailEditText: AppCompatEditText? = null
-    private var passwordEditText: ShowHidePasswordEditText? = null
-    private var signUpButton: AppCompatButton? = null
-    private var login: AppCompatTextView? = null
-    private var animationLoading: LottieAnimationView? = null
+    private lateinit var dataBinding: ActivitySignUpBinding
+    private lateinit var iSessionManagement: SessionManagement
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_sign_up)
+        dataBinding = DataBindingUtil.setContentView(this, R.layout.activity_sign_up)
 
-        /////*     initialize view   */////
-        login = findViewById(R.id.id_SignIn_TextView)
-        userNameEditText = findViewById(R.id.userName_EditText)
-        emailEditText = findViewById(R.id.email_EditText)
-        passwordEditText = findViewById(R.id.password_EditText)
-        signUpButton = findViewById(R.id.id_signUp_Button)
-        animationLoading = findViewById(R.id.animation_loading)
+        iSessionManagement = SessionManagement(this)
         checkPassLength()
-
-        /////*     On Click         */////
-        PushDownAnim.setPushDownAnimTo(login).setScale(PushDownAnim.MODE_SCALE, 0.85f)
-            .setOnClickListener(this)
-        PushDownAnim.setPushDownAnimTo(signUpButton)
+        PushDownAnim.setPushDownAnimTo(dataBinding.SignInTextView)
+            .setScale(PushDownAnim.MODE_SCALE, 0.85f).setOnClickListener(this)
+        PushDownAnim.setPushDownAnimTo(dataBinding.signUpButton)
             .setScale(PushDownAnim.MODE_SCALE, 0.85f).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        if (v === login) {
+        if (v === dataBinding.SignInTextView) {
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
-        if (v === signUpButton) {
+        if (v === dataBinding.signUpButton) {
             signUpFunction()
         }
     }
 
     private fun signUpFunction() {
-        /////*   Get  Email  && Name  && Password    */////
-        val username: String = userNameEditText?.text.toString()
-        val email: String = emailEditText?.text.toString()
-        val password: String = passwordEditText?.text.toString()
-
-        /////*   Check if email and password written and valid   */////
+        val username: String = dataBinding.userNameEditText.text.toString()
+        val email: String = dataBinding.emailEditText.text.toString()
+        val password: String = dataBinding.passwordEditText.text.toString()
         if (!validate(username, email, password)) {
             return
         } else {
@@ -84,35 +67,35 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
     private fun validate(userName: String, email: String, password: String): Boolean {
         var valid = true
         if (userName.isEmpty()) {
-            userNameEditText?.error = getString(R.string.validUserName)
-            userNameEditText?.isFocusable = true
+            dataBinding.userNameEditText.error = getString(R.string.validUserName)
+            dataBinding.userNameEditText.isFocusable = true
             valid = false
         } else {
-            userNameEditText?.error = null
+            dataBinding.userNameEditText.error = null
         }
         if (email.isEmpty() || !Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            emailEditText?.error = getString(R.string.validEmail)
-            emailEditText?.isFocusable = true
+            dataBinding.emailEditText.error = getString(R.string.validEmail)
+            dataBinding.emailEditText.isFocusable = true
             valid = false
         } else {
-            emailEditText?.error = null
+            dataBinding.emailEditText.error = null
         }
         if (password.isEmpty() || password.length < 6 || password.length > 12) {
-            passwordEditText?.error = getString(R.string.validPassword)
-            passwordEditText?.isFocusable = true
+            dataBinding.passwordEditText.error = getString(R.string.validPassword)
+            dataBinding.passwordEditText.isFocusable = true
             valid = false
         } else {
-            passwordEditText?.error = null
+            dataBinding.passwordEditText.error = null
         }
         return valid
     }
 
     private fun checkPassLength() {
-        passwordEditText?.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(12))
+        dataBinding.passwordEditText.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(12))
     }
 
     private fun signup(userName: String, email: String, password: String) {
-        animationLoading?.visibility = View.VISIBLE
+        dataBinding.animationLoading.visibility = View.VISIBLE
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
@@ -121,10 +104,14 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
                         it.result?.user?.uid!!, userName, "", "",
                         email, password, "", "", "", "", "0"
                     )
-
                     FirebaseFirestore.getInstance().collection(STUDENT)
                         .document(it.result?.user?.uid!!).set(student, SetOptions.merge())
                         .addOnSuccessListener {
+                            iSessionManagement.createLoginSession(
+                                true, FirebaseAuth.getInstance().uid!!,
+                                userName, "", "", email, "",
+                                "", "", "", "0"
+                            )
                             val intent = Intent(this, AboutYouActivity::class.java)
                             intent.putExtra("name", userName)
                             intent.putExtra("email", email)
@@ -134,10 +121,9 @@ class SignUpActivity : BaseActivity(), View.OnClickListener {
                         .addOnFailureListener { e ->
                             showToastError(this@SignUpActivity, e.message.toString())
                         }
-
                 } else {
                     // error
-                    animationLoading?.visibility = View.GONE
+                    dataBinding.animationLoading.visibility = View.GONE
                     showToastError(this, it.exception?.message.toString())
                 }
             }

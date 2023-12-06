@@ -1,8 +1,11 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
+    id("kotlin-kapt")
 }
 
 android {
@@ -31,13 +34,15 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = "17"
     }
-
+    buildFeatures {
+        dataBinding = true
+    }
 }
 
 dependencies {
@@ -46,6 +51,7 @@ dependencies {
     implementation("com.google.android.material:material:1.10.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
+    //firebase
     implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
     implementation("com.google.firebase:firebase-firestore")
     implementation("com.google.firebase:firebase-database")
@@ -55,21 +61,14 @@ dependencies {
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-messaging")
 
-    implementation("com.maksim88:PasswordEditText:v0.9")
-
+    //pass edit text
     implementation("com.github.scottyab:showhidepasswordedittext:0.8")
 
-
-    //circle_image_view
-    implementation("de.hdodenhof:circleimageview:3.1.0")
+    //circle image view
     implementation("com.rishabhharit.roundedimageview:RoundedImageView:0.8.4")
-
-    //rx_image_picker
-    implementation("com.mlsdev.rximagepicker:library:2.2.1")
 
     //recycler_view
     implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation("com.mlsdev.animatedrv:library:2.0.0")
 
     //view_pager
     implementation("androidx.viewpager2:viewpager2:1.1.0-beta02")
@@ -79,9 +78,6 @@ dependencies {
 
     // spinner
     implementation("com.github.chivorns:smartmaterialspinner:1.5.0")
-
-    // compress image
-    implementation("id.zelory:compressor:3.0.1")
 
     // size
     implementation("com.intuit.sdp:sdp-android:1.0.6")
@@ -94,17 +90,11 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.11.0")
     annotationProcessor("com.github.bumptech.glide:compiler:4.11.0")
 
-    //rx
-    implementation("io.reactivex.rxjava2:rxandroid:2.1.1")
-    implementation("io.reactivex.rxjava2:rxjava:2.2.18")
-    implementation("io.reactivex.rxjava2:rxkotlin:2.1.0")
-
+    //lottie
     implementation("com.airbnb.android:lottie:6.2.0")
-    implementation("com.github.thekhaeng:pushdown-anim-click:1.1.1")
 
-    //edit_text_lib
-    implementation("ss.anoop:awesome-textinput-layout:1.0.3")
-    implementation("com.maksim88:PasswordEditText:v0.9")
+    //push down
+    implementation("com.github.thekhaeng:pushdown-anim-click:1.1.1")
 
     //drawer
     implementation("androidx.drawerlayout:drawerlayout:1.2.0")

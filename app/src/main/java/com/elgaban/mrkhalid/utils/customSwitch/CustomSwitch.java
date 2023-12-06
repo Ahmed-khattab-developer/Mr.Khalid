@@ -28,7 +28,7 @@ import com.elgaban.mrkhalid.R;
 /**
  * for more visit http://materialuiux.com
  */
-public class customSwitch extends ViewGroup {
+public class CustomSwitch extends ViewGroup {
 
     private static final String EXTRA_SUPER = "extra_super";
     private static final String EXTRA_CHECKED = "extra_is_checked";
@@ -72,23 +72,23 @@ public class customSwitch extends ViewGroup {
 
     private CheckedChangeListener listener;
 
-    public customSwitch(Context context) {
+    public CustomSwitch(Context context) {
         super(context);
         init(null);
     }
 
-    public customSwitch(Context context, AttributeSet attrs) {
+    public CustomSwitch(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public customSwitch(Context context, AttributeSet attrs, int defStyleAttr) {
+    public CustomSwitch(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(attrs);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public customSwitch(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public CustomSwitch(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(attrs);
     }
