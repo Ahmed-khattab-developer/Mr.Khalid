@@ -34,5 +34,8 @@
     <string name="sendEmail" translatable="false">تم ارسال رساله الي ايميلك</string>
     <string name="incorrectEmailOrPassword" translatable="false">هناك خطأ في الايميل او الرقم السري</string>
     <string name="gradeNumber" translatable="false">أختر الصف الدراسي</string>
+    <string name="first_grade">الأول الثانوي</string>
+    <string name="second_grade">الثاني الثانوي</string>
+    <string name="third_grade">الثالث الثانوي</string>
 
 </resources>

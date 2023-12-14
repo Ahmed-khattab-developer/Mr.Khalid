@@ -12,10 +12,10 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.widget.AppCompatImageView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.DrawableCompat
 import com.elgaban.mrkhalid.R.*
+import com.elgaban.mrkhalid.databinding.MotionToastBinding
 
 class MyMotionToast {
 
@@ -37,37 +37,33 @@ class MyMotionToast {
             style: String, position: Int, duration: Long, font: Typeface?
         ) {
 
-            val layout = LayoutInflater.from(context).inflate(
-                layout.motion_toast, context.findViewById(id.color_toast_view)
-            )
+            val inflater = LayoutInflater.from(context)
+            val view = inflater.inflate(layout.motion_toast, null)
+            val binding = MotionToastBinding.bind(view)
+
             when (style) {
                 // Function for Toast Success
                 TOAST_SUCCESS -> {
-                    layout.findViewById<AppCompatImageView>(id.color_toast_image).setImageDrawable(
+                    binding.colorToastImage.setImageDrawable(
                         ContextCompat.getDrawable(context, drawable.ic_check_green)
                     )
                     DrawableCompat.setTint(
-
-                        DrawableCompat.wrap(layout.findViewById<AppCompatImageView>(id.color_toast_image).drawable),
+                        DrawableCompat.wrap(binding.colorToastImage.drawable),
                         ContextCompat.getColor(context, successToastColor)
                     )
                     // Pulse Animation for Icon
                     val pulseAnimation = AnimationUtils.loadAnimation(context, anim.pulse)
-                    layout.findViewById<AppCompatImageView>(id.color_toast_image)
-                        .startAnimation(pulseAnimation)
+                    binding.colorToastImage.startAnimation(pulseAnimation)
 
                     // round background color
-                    setBackgroundAndFilter(layout, context)
-                    layout.findViewById<TextView>(id.color_toast_text).setTextColor(
+                    setBackgroundAndFilter(binding.colorToastView, context)
+                    binding.colorToastText.setTextColor(
                         ContextCompat.getColor(context, successToastColor)
                     )
-                    layout.findViewById<TextView>(id.color_toast_text).text =
+                    binding.colorToastText.text =
                         if (title.isNullOrBlank()) TOAST_SUCCESS else title
 
-                    setDescriptionDetails(
-                        font, message,
-                        layout.findViewById(id.color_toast_description)
-                    )
+                    setDescriptionDetails(font, message, binding.colorToastDescription)
 
                     // init toast
                     val toast = Toast(context.applicationContext)
@@ -77,39 +73,35 @@ class MyMotionToast {
                     setGravity(position, toast)
 
                     // Setting layout to toast
-                    toast.view = layout
+                    toast.view = binding.colorToastView
                     toast.duration = Toast.LENGTH_SHORT
                     toast.show()
                 }
                 // CTA for Toast Error
                 TOAST_ERROR -> {
 
-                    layout.findViewById<AppCompatImageView>(id.color_toast_image).setImageDrawable(
+                    binding.colorToastImage.setImageDrawable(
                         ContextCompat.getDrawable(context, drawable.ic_error_)
                     )
                     DrawableCompat.setTint(
-                        DrawableCompat.wrap(layout.findViewById<AppCompatImageView>(id.color_toast_image).drawable),
+                        DrawableCompat.wrap(binding.colorToastImage.drawable),
                         ContextCompat.getColor(context, errorToastColor)
                     )
                     // Pulse Animation for Icon
                     val pulseAnimation = AnimationUtils.loadAnimation(context, anim.pulse)
-                    layout.findViewById<AppCompatImageView>(id.color_toast_image)
-                        .startAnimation(pulseAnimation)
+                    binding.colorToastImage.startAnimation(pulseAnimation)
 
                     // round background color
-                    setBackgroundAndFilter(layout, context)
+                    setBackgroundAndFilter(binding.colorToastView, context)
 
                     // Setting up the color for title & Message text
 
-                    layout.findViewById<TextView>(id.color_toast_text).setTextColor(
+                    binding.colorToastText.setTextColor(
                         ContextCompat.getColor(context, errorToastColor)
                     )
-                    layout.findViewById<TextView>(id.color_toast_text).text =
-                        if (title.isNullOrBlank()) TOAST_ERROR else title
+                    binding.colorToastText.text = if (title.isNullOrBlank()) TOAST_ERROR else title
 
-                    setDescriptionDetails(
-                        font, message, layout.findViewById(id.color_toast_description)
-                    )
+                    setDescriptionDetails(font, message, binding.colorToastDescription)
 
                     // init toast
                     val toast = Toast(context.applicationContext)
@@ -119,37 +111,33 @@ class MyMotionToast {
                     setGravity(position, toast)
 
                     // Setting layout to toast
-                    toast.view = layout
+                    toast.view = binding.colorToastView
                     toast.duration = Toast.LENGTH_SHORT
                     toast.show()
                 }
                 // CTA for Toast No Internet
                 TOAST_NO_INTERNET -> {
-                    layout.findViewById<AppCompatImageView>(id.color_toast_image)
-                        .setImageResource(drawable.ic_no_internet)
+                    binding.colorToastImage.setImageResource(drawable.ic_no_internet)
 
                     DrawableCompat.setTint(
-                        DrawableCompat.wrap(layout.findViewById<AppCompatImageView>(id.color_toast_image).drawable),
+                        DrawableCompat.wrap(binding.colorToastImage.drawable),
                         ContextCompat.getColor(context, warningToastColor)
                     )
                     // Pulse Animation for Icon
                     val pulseAnimation = AnimationUtils.loadAnimation(context, anim.pulse)
-                    layout.findViewById<AppCompatImageView>(id.color_toast_image)
-                        .startAnimation(pulseAnimation)
+                    binding.colorToastImage.startAnimation(pulseAnimation)
 
                     // round background color
-                    setBackgroundAndFilter(layout, context)
+                    setBackgroundAndFilter(binding.colorToastView, context)
 
                     // Setting up the color for title & Message text
-                    layout.findViewById<TextView>(id.color_toast_text).setTextColor(
+                    binding.colorToastText.setTextColor(
                         ContextCompat.getColor(context, warningToastColor)
                     )
-                    layout.findViewById<TextView>(id.color_toast_text).text =
+                    binding.colorToastText.text =
                         if (title.isNullOrBlank()) TOAST_NO_INTERNET else title
 
-                    setDescriptionDetails(
-                        font, message, layout.findViewById(id.color_toast_description)
-                    )
+                    setDescriptionDetails(font, message, binding.colorToastDescription)
 
                     // init toast
                     val toast = Toast(context.applicationContext)
@@ -161,10 +149,9 @@ class MyMotionToast {
                     setGravity(position, toast)
 
                     // Setting layout to toast
-                    toast.view = layout
+                    toast.view = binding.colorToastView
                     toast.duration = Toast.LENGTH_SHORT
                     toast.show()
-
                 }
             }
         }

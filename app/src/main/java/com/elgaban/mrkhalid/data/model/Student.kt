@@ -1,15 +1,15 @@
 package com.elgaban.mrkhalid.data.model
 
 data class Student(
-    val id: String = "",
-    val name: String = "",
-    val phone: String = "",
-    val parentPhone: String = "",
-    val email: String = "",
-    val password: String = "",
-    val grade: String = "",
-    val birthDate: String = "",
-    val image: String = "",
-    val gender: String = "",
-    val profileCompleted: String = ""
+    var id: String = "",
+    var name: String = "",
+    var phone: String = "",
+    var parentPhone: String = "",
+    var email: String = "",
+    var password: String = "",
+    var grade: String = "",
+    var birthDate: String = "",
+    var image: String = "",
+    var gender: String = "",
+    var profileCompleted: String = ""
 )
