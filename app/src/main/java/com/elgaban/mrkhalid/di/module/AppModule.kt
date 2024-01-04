@@ -17,15 +17,14 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideContext(@ApplicationContext appContext: Context): Context {
-        return appContext
-    }
+    fun provideContext(@ApplicationContext appContext: Context) = appContext
 
     @Provides
     fun provideAuthRepository() = AuthRepository()
 
     @Provides
-    fun provideConnectivityRepository(@ApplicationContext context: Context) = ConnectivityRepository(context)
+    fun provideConnectivityRepository(@ApplicationContext context: Context) =
+        ConnectivityRepository(context)
 
     @Singleton
     @Provides

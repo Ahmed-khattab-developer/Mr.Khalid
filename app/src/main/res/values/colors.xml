@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#99D6D6D6</color>
     <color name="colorAccent">#796eee</color>
 
+    <color name="colorAccent2">#6F66D8</color>
+
     <color name="primaryText">#6f6f6f</color>
     <color name="secondaryText">#a6a6a6</color>
     <color name="signUpSignInTextColor">#4c1a63</color>

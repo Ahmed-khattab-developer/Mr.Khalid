@@ -23,9 +23,8 @@ import javax.inject.Inject
 
 private val Context.dataStore by preferencesDataStore(name = DATASTORE_NAME)
 
-class DataStoreRepositoryImpl @Inject constructor(
-    private val context: Context
-) : DataStoreRepository {
+class DataStoreRepositoryImpl @Inject constructor(private val context: Context) :
+    DataStoreRepository {
 
     override suspend fun getProfileCompleted(): String {
         val preference = context.dataStore.data.first()
@@ -48,12 +47,11 @@ class DataStoreRepositoryImpl @Inject constructor(
     }
 
     override suspend fun getIsLoggedIn(): Boolean {
-        return try {
-            val preference = context.dataStore.data.first()
-            preference[IS_LOGIN]!!
-        } catch (e: Exception) {
-            e.printStackTrace()
+        val preference = context.dataStore.data.first()
+        return if (preference[IS_LOGIN] == null) {
             false
+        } else {
+            preference[IS_LOGIN] ?: false
         }
     }
 
@@ -85,21 +83,19 @@ class DataStoreRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getStudentPreference() {
-        context.dataStore.data.map { student ->
-            Student(
-                id = student[ID]!!,
-                name = student[NAME]!!,
-                phone = student[PHONE]!!,
-                parentPhone = student[PARENT_PARENT]!!,
-                email = student[EMAIL]!!,
-                password = student[PASSWORD]!!,
-                grade = student[GRADE]!!,
-                birthDate = student[BIRTHDAY]!!,
-                image = student[IMAGE]!!,
-                gender = student[GENDER]!!,
-                profileCompleted = student[PROFILE_COMPLETED]!!
-            )
-        }
+    override suspend fun getStudentPreference() = context.dataStore.data.map { student ->
+        Student(
+            id = student[ID]!!,
+            name = student[NAME]!!,
+            phone = student[PHONE]!!,
+            parentPhone = student[PARENT_PARENT]!!,
+            email = student[EMAIL]!!,
+            password = student[PASSWORD]!!,
+            grade = student[GRADE]!!,
+            birthDate = student[BIRTHDAY]!!,
+            image = student[IMAGE]!!,
+            gender = student[GENDER]!!,
+            profileCompleted = student[PROFILE_COMPLETED]!!
+        )
     }
 }

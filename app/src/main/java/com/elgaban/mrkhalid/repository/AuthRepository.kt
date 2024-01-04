@@ -5,11 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.elgaban.mrkhalid.data.model.Student
 import com.elgaban.mrkhalid.utils.Resource
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.crashlytics.buildtools.reloc.org.apache.http.HttpException
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.tasks.await
 import java.io.IOException
@@ -31,29 +29,27 @@ constructor() {
         }
     }
 
-    suspend fun register(email: String, password: String, student: Student):
-            Flow<Resource<FirebaseUser>> =
-        flow {
-            emit(Resource.Loading())
-            try {
-                val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
-                student.id = firebaseAuth.currentUser!!.uid
-                fireStoreDatabase.collection(studentModel)
-                    .document(firebaseAuth.currentUser!!.uid).set(student).await()
-                emit((result.user?.let { Resource.Success(it) }!!))
-                loggedOutLiveData.postValue(false)
-            } catch (e: HttpException) {
-                emit(Resource.Error(e.localizedMessage ?: "Unknown Error"))
-            } catch (e: IOException) {
-                emit(
-                    Resource.Error(e.localizedMessage ?: "Check Your Internet Connection")
-                )
-            } catch (e: Exception) {
-                emit(Resource.Error(e.localizedMessage ?: ""))
-            }
+    suspend fun register(email: String, password: String, student: Student) = flow {
+        emit(Resource.Loading())
+        try {
+            val result = firebaseAuth.createUserWithEmailAndPassword(email, password).await()
+            student.id = firebaseAuth.currentUser!!.uid
+            fireStoreDatabase.collection(studentModel)
+                .document(firebaseAuth.currentUser!!.uid).set(student).await()
+            emit((result.user?.let { Resource.Success(it) }!!))
+            loggedOutLiveData.postValue(false)
+        } catch (e: HttpException) {
+            emit(Resource.Error(e.localizedMessage ?: "Unknown Error"))
+        } catch (e: IOException) {
+            emit(
+                Resource.Error(e.localizedMessage ?: "Check Your Internet Connection")
+            )
+        } catch (e: Exception) {
+            emit(Resource.Error(e.localizedMessage ?: ""))
         }
+    }
 
-    suspend fun login(email: String, password: String): Flow<Resource<FirebaseUser>> = flow {
+    suspend fun login(email: String, password: String) = flow {
         emit(Resource.Loading())
         try {
             val result = firebaseAuth.signInWithEmailAndPassword(email, password).await()
@@ -64,12 +60,12 @@ constructor() {
         } catch (e: IOException) {
             emit(Resource.Error(e.localizedMessage ?: "Check Your Internet Connection"))
         } catch (e: Exception) {
-            emit(Resource.Error(e.localizedMessage ?: ""))
+            emit(Resource.Error(e.localizedMessage ?: "خطأ في الايميل او الباسورد"))
         }
 
     }
 
-    suspend fun forgetPassword(email: String): Flow<Resource<String>> = flow {
+    suspend fun forgetPassword(email: String) = flow {
         emit(Resource.Loading())
         try {
             firebaseAuth.sendPasswordResetEmail(email).await()
@@ -84,7 +80,7 @@ constructor() {
         }
     }
 
-    suspend fun getLoggedUser(): Flow<Resource<FirebaseUser>> = flow {
+    suspend fun getLoggedUser() = flow {
         emit(Resource.Loading())
         if (firebaseAuth.currentUser != null) {
             loggedOutLiveData.postValue(false)
@@ -94,7 +90,7 @@ constructor() {
         }
     }
 
-    suspend fun getUserData(): Flow<Resource<Student>> = flow {
+    suspend fun getUserData() = flow {
         emit(Resource.Loading())
         if (firebaseAuth.currentUser != null) {
             try {
@@ -119,7 +115,7 @@ constructor() {
     suspend fun completeData(
         mProfileUri: Uri, phone: String, phoneParent: String,
         grade: String, gender: String, dateOfBirth: String
-    ): Flow<Resource<String>> = flow {
+    ) = flow {
         emit(Resource.Loading())
         if (firebaseAuth.currentUser != null) {
             try {

@@ -164,9 +164,9 @@ class AboutYouActivity : BaseActivity(), View.OnClickListener {
         val year: String? = dataBinding.yearDatePicker.seletedItem
         dateOfBirth = "$day $month $year"
         gender = if (getGender == "LEFT") {
-            "female"
+            "بنت"
         } else {
-            "male"
+            "ولد"
         }
         if (!validate()) {
             return

@@ -78,7 +78,8 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
     //view_pager
-    implementation("androidx.viewpager2:viewpager2:1.1.0-beta02")
+    implementation("com.github.ibrahimsn98:SmoothBottomBar:1.7.9")
+
 
     //image picker
     implementation("com.github.Drjacky:ImagePicker:2.3.22")

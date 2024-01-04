@@ -19,9 +19,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toTopOf="@+id/bottomBar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
 
+                    <RelativeLayout
+                        android:id="@+id/frameContainer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                </RelativeLayout>
+
+                <me.ibrahimsn.lib.SmoothBottomBar
+                    android:id="@+id/bottomBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_55sdp"
+                    app:backgroundColor="@color/colorAccent"
+                    app:cornerRadius="@dimen/_20sdp"
+                    app:duration="500"
+                    app:iconSize="@dimen/_15ssp"
+                    app:iconTint="@color/white"
+                    app:iconTintActive="@color/white"
+                    app:indicatorColor="@color/colorAccent2"
+                    app:itemFontFamily="@font/cairo_regular"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:menu="@menu/tab_view_pager"
+                    app:textSize="@dimen/_15ssp" />
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </ScrollView>
 

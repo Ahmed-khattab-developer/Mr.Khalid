@@ -131,6 +131,23 @@ class SignInActivity : BaseActivity(), View.OnClickListener {
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                             startActivity(intent)
                             finish()
+                        } else if (student.profileCompleted == "2") {
+
+                            loggedInViewModel.putIsLoggedIn(true)
+                            loggedInViewModel.saveStudentData(
+                                Student(
+                                    student.id, student.name, student.phone, student.parentPhone,
+                                    student.email, student.password, student.grade,
+                                    student.birthDate, student.image, student.gender,
+                                    "1"
+                                )
+                            )
+
+                            val intent = Intent(this@SignInActivity, MainActivity::class.java)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                            startActivity(intent)
+                            finish()
                         }
                     }
                 }
